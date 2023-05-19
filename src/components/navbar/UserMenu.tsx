@@ -1,13 +1,13 @@
 "use client";
 
 import { AiOutlineMenu } from "react-icons/ai";
-import { User } from "@prisma/client";
 import { useCallback, useState } from "react";
 
 import Avatar from "../Avatar";
 import MenuItem from "./MenuItem";
 import { signOut } from "next-auth/react";
 import useRegisterLoginModal from "@/hooks/useRegisterLoginModal";
+import useRentModal from "@/hooks/useRentModal";
 
 interface UserMenuProps {
   currentUser?: {
@@ -19,6 +19,7 @@ interface UserMenuProps {
 
 const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
   const registerLoginModal = useRegisterLoginModal();
+  const rentModal = useRentModal();
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -26,11 +27,19 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
     setIsOpen((value) => !value);
   }, []);
 
+  const onRent = useCallback(() => {
+    if (!currentUser) {
+      return registerLoginModal.onOpen();
+    }
+
+    rentModal.onOpen();
+  }, [currentUser, registerLoginModal, rentModal]);
+
   return (
     <div className="relative">
       <div className="flex items-center gap-3">
         <div
-          onClick={() => {}}
+          onClick={onRent}
           className="hidden md:block text-sm font-semibold py-3 px-4 rounded-full hover:bg-neutral-100 transition cursor-pointer"
         >
           Airbnb your home
@@ -55,8 +64,11 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
                 <MenuItem onClick={() => {}} label="My favorites" />
                 <MenuItem onClick={() => {}} label="My reservations" />
                 <MenuItem onClick={() => {}} label="My properties" />
-                <MenuItem onClick={() => {}} label="Airbnb my home" />
-                <MenuItem onClick={() => {}} label="Airbnb my home" />
+                <MenuItem
+                  onClick={() => rentModal.onOpen()}
+                  label="Airbnb my home"
+                />
+
                 <hr />
                 <MenuItem onClick={() => signOut()} label="Logout" />
               </>

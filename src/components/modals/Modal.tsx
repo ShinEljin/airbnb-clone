@@ -14,10 +14,11 @@ interface ModalProps {
   footer?: React.ReactElement;
   actionLabel: string;
   disabled?: boolean;
+  isLoading?: boolean;
   secondaryAction?: () => void;
   secondaryActionLabel?: string;
-  userState: string;
-  setUserState: (userState: string) => void;
+  userState?: string;
+  setUserState?: (userState: string) => void;
 }
 
 const Modal: React.FC<ModalProps> = ({
@@ -29,6 +30,7 @@ const Modal: React.FC<ModalProps> = ({
   footer,
   actionLabel,
   disabled,
+  isLoading,
   secondaryAction,
   secondaryActionLabel,
   userState,
@@ -56,7 +58,7 @@ const Modal: React.FC<ModalProps> = ({
       return;
     }
 
-    setUserState("");
+    setUserState!("");
   }, [setUserState, disabled]);
 
   const handleSecondaryAction = useCallback(() => {
@@ -82,10 +84,10 @@ const Modal: React.FC<ModalProps> = ({
             ${showModal ? "opacity-100" : "opacity-0"}
             `}
           >
-            <div className="translate h-full lg:h-auto md:h-auto border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+            <div className="h-full md:h-auto lg:h-auto  border-0 rounded-lg shadow-lg relative flex flex-col  w-full bg-white outline-none focus:outline-none">
               {/* HEADER */}
               <div className="flex items-center p-6 rounded-t justify-center relative border-b-[1px]">
-                {userState === "" ? (
+                {userState === "" || !userState ? (
                   <button
                     className="p-1 border-0 hover:opacity-70 transition absolute left-9"
                     onClick={handleClose}
@@ -119,7 +121,11 @@ const Modal: React.FC<ModalProps> = ({
                         type="button"
                       />
                     )}
-                    <Button disabled={disabled} label={actionLabel} />
+                    <Button
+                      disabled={disabled}
+                      label={actionLabel}
+                      isLoading={isLoading}
+                    />
                   </div>
                   {footer}
                 </div>

@@ -1,11 +1,13 @@
 "use client";
 
 import { IconType } from "react-icons";
+import Loader from "./Loader";
 
 interface ButtonProps {
   label: string;
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   disabled?: boolean;
+  isLoading?: boolean;
   type?: "submit" | "button";
   outline?: boolean;
   small?: boolean;
@@ -17,6 +19,7 @@ const Button: React.FC<ButtonProps> = ({
   label,
   onClick,
   disabled,
+  isLoading,
   type = "submit",
   outline,
   small,
@@ -28,7 +31,7 @@ const Button: React.FC<ButtonProps> = ({
       type={type}
       onClick={onClick}
       disabled={disabled}
-      className={`relative disabled:opacity-70 disabled:cursor-not-allowed rounded-lg hover:opacity-80 transition w-full 
+      className={`flex justify-center relative disabled:opacity-70 disabled:cursor-not-allowed rounded-lg hover:opacity-80 transition w-full 
       ${
         outline
           ? "bg-white border-black text-black"
@@ -47,7 +50,7 @@ const Button: React.FC<ButtonProps> = ({
           color={iconColor && iconColor}
         />
       )}
-      {label}
+      {isLoading ? <Loader /> : label}
     </button>
   );
 };

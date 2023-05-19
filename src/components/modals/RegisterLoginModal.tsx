@@ -42,17 +42,12 @@ const RegisterModal = () => {
         const response = await axios.get(`/api/check-email/${data.email}`);
 
         if (!response.data) {
-          //no email found need to register
           setUserState("register");
         } else {
-          //login
           setUserState("login");
         }
 
         setIsLoading(false);
-        // toast.success("Successfully registered!", {
-        //   duration: 5000,
-        // });
       } catch (error: any) {
         console.log(error.response);
         toast.error("Something went wrong");
@@ -61,9 +56,9 @@ const RegisterModal = () => {
     } else if (userState === "register") {
       try {
         await axios.post("/api/register", data);
-        onClose();
+        setUserState("");
         setIsLoading(false);
-        toast.success("Successfully registered!", {
+        toast.success("Successfully registered! Please login", {
           duration: 5000,
         });
       } catch (error: any) {
@@ -99,7 +94,7 @@ const RegisterModal = () => {
 
   const bodyContent = (
     <div>
-      {userState === "" && (
+      {userState === "" ? (
         <>
           <Heading title="Welcome to Airbnb" />
           <Input
@@ -112,7 +107,7 @@ const RegisterModal = () => {
             required
           />
         </>
-      )}
+      ) : null}
       {userState === "register" && (
         <div className="flex flex-col gap-4">
           <Input
@@ -184,6 +179,7 @@ const RegisterModal = () => {
   return (
     <Modal
       disabled={isLoading}
+      isLoading={isLoading}
       isOpen={isOpen}
       title={
         userState === ""

@@ -32,7 +32,7 @@ const Button: React.FC<ButtonProps> = ({
       ${
         outline
           ? "bg-white border-black text-black"
-          : "bg-rose-500 border-rose-500 text-white"
+          : "bg-gradient-to-r from-[#E61E4E] via-[#E31C5F] to-[#D80666] text-white"
       }
       ${
         small

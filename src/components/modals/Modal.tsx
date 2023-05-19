@@ -58,7 +58,7 @@ const Modal: React.FC<ModalProps> = ({
       return;
     }
 
-    setUserState!("");
+    setUserState?.("");
   }, [setUserState, disabled]);
 
   const handleSecondaryAction = useCallback(() => {

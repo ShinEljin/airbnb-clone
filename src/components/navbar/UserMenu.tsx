@@ -8,13 +8,10 @@ import MenuItem from "./MenuItem";
 import { signOut } from "next-auth/react";
 import useRegisterLoginModal from "@/hooks/useRegisterLoginModal";
 import useRentModal from "@/hooks/useRentModal";
+import { SafeUser } from "@/types";
 
 interface UserMenuProps {
-  currentUser?: {
-    name?: string | null;
-    email?: string | null;
-    image?: string | null;
-  } | null;
+  currentUser?: SafeUser | null;
 }
 
 const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {

@@ -91,7 +91,6 @@ const RentModal = () => {
       return onNext();
     }
 
-    console.log(data);
     setIsLoading(true);
 
     try {

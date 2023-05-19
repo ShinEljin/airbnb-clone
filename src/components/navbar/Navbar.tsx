@@ -7,7 +7,11 @@ import Search from "./Search";
 import UserMenu from "./UserMenu";
 
 interface NavbarProps {
-  currentUser: User | null;
+  currentUser?: {
+    name?: string | null;
+    email?: string | null;
+    image?: string | null;
+  } | null;
 }
 
 const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {

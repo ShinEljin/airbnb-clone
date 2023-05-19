@@ -10,7 +10,11 @@ import { signOut } from "next-auth/react";
 import useRegisterLoginModal from "@/hooks/useRegisterLoginModal";
 
 interface UserMenuProps {
-  currentUser?: User | null;
+  currentUser?: {
+    name?: string | null;
+    email?: string | null;
+    image?: string | null;
+  } | null;
 }
 
 const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {

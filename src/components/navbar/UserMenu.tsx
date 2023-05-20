@@ -8,7 +8,6 @@ import MenuItem from "./MenuItem";
 import { signOut } from "next-auth/react";
 import useRegisterLoginModal from "@/hooks/useRegisterLoginModal";
 import useRentModal from "@/hooks/useRentModal";
-import { SafeUser } from "@/types";
 import { User } from "@prisma/client";
 
 interface UserMenuProps {

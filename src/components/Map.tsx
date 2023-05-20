@@ -1,7 +1,13 @@
 "use client";
 
 import L from "leaflet";
-import { MapContainer, Marker, TileLayer } from "react-leaflet";
+
+// @ts-ignore
+import { MapContainer } from "react-leaflet/MapContainer";
+// @ts-ignore
+import { Marker } from "react-leaflet/Marker";
+// @ts-ignore
+import { TileLayer } from "react-leaflet/TileLayer";
 
 import "leaflet/dist/leaflet.css";
 import markerIcon2x from "leaflet/dist/images/marker-icon-2x.png";
@@ -26,13 +32,16 @@ const attribution =
 
 const Map: React.FC<MapProps> = ({ center }) => {
   return (
+    //@ts-ignore
     <MapContainer
       center={(center as L.LatLngExpression) || [51, -0.09]}
       zoom={center ? 4 : 2}
       // scrollWheelZoom={false}
       className="h-[35vh] rounded-lg"
     >
+      {/* @ts-ignore */}
       <TileLayer url={url} attribution={attribution} />
+      {/* @ts-ignore */}
       {center && <Marker position={center as L.LatLngExpression} />}
     </MapContainer>
   );

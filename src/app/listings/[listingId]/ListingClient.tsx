@@ -70,8 +70,8 @@ const ListingClient: React.FC<ListingClientProps> = ({
       });
       toast.success("Listing reserved!");
       setDateRange(initialDateRange);
-      //Redirect to /trips
-      router.refresh();
+
+      router.push("/trips");
       setIsLoading(false);
     } catch (error) {
       toast.error("Something went wrong");
@@ -100,7 +100,6 @@ const ListingClient: React.FC<ListingClientProps> = ({
       }
     }
   }, [dateRange, listing.price]);
-
   const category = useMemo(() => {
     return categories.find((items) => items.label === listing.category);
   }, [listing.category]);

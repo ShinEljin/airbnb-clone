@@ -9,7 +9,7 @@ import { User } from "@prisma/client";
 import { SafeUser } from "@/types";
 
 interface NavbarProps {
-  currentUser?: SafeUser | null;
+  currentUser?: User | null;
 }
 
 const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {

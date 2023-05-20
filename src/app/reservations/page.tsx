@@ -4,8 +4,6 @@ import getCurrentUser from "@/utils/getCurrentUser";
 import getReservations from "@/utils/getReservations";
 import ReservationClient from "./ReservationClient";
 
-// import TripsClient from "./ReservationsClient";
-
 const ReservationsPage = async () => {
   const currentUser = await getCurrentUser();
 

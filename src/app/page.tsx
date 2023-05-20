@@ -3,7 +3,6 @@ import EmptyState from "@/components/EmptyState";
 import ListingCard from "@/components/listings/ListingCard";
 import getCurrentUser from "@/utils/getCurrentUser";
 import getListings from "@/utils/getListings";
-import { Listing } from "@prisma/client";
 
 export default async function Home() {
   const listings = await getListings();

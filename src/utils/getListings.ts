@@ -2,33 +2,33 @@ import { prisma } from "@/lib/prisma";
 
 export interface IListingsParams {
   userId?: string;
-  guestCount?: number;
-  roomCount?: number;
-  bathroomCount?: number;
-  startDate?: string;
-  endDate?: string;
-  locationValue?: string;
-  category?: string;
+  // guestCount?: number;
+  // roomCount?: number;
+  // bathroomCount?: number;
+  // startDate?: string;
+  // endDate?: string;
+  // locationValue?: string;
+  // category?: string;
 }
 
-export default async function getListings() {
+export default async function getListings(params: IListingsParams) {
   try {
-    // const {
-    //   userId,
-    //   roomCount,
-    //   guestCount,
-    //   bathroomCount,
-    //   locationValue,
-    //   startDate,
-    //   endDate,
-    //   category,
-    // } = params;
+    const {
+      userId,
+      // roomCount,
+      // guestCount,
+      // bathroomCount,
+      // locationValue,
+      // startDate,
+      // endDate,
+      // category,
+    } = params;
 
-    // let query: any = {};
+    let query: any = {};
 
-    // if (userId) {
-    //   query.userId = userId;
-    // }
+    if (userId) {
+      query.userId = userId;
+    }
 
     // if (category) {
     //   query.category = category;
@@ -76,7 +76,7 @@ export default async function getListings() {
     // }
 
     const listings = await prisma.listing.findMany({
-      // where: query,
+      where: query,
       orderBy: {
         createdAt: "desc",
       },

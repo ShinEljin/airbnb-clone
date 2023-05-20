@@ -9,7 +9,7 @@ interface HomeProps {
 }
 
 const Home = async () => {
-  const listings = await getListings();
+  const listings = await getListings({});
   const currentUser = await getCurrentUser();
 
   if (listings.length === 0) {

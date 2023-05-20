@@ -8,8 +8,8 @@ interface HomeProps {
   searchParams: IListingsParams;
 }
 
-const Home = async ({ searchParams }: HomeProps) => {
-  const listings = await getListings(searchParams);
+const Home = async () => {
+  const listings = await getListings();
   const currentUser = await getCurrentUser();
 
   if (listings.length === 0) {

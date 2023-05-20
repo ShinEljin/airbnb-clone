@@ -1,18 +1,18 @@
 "use client";
 
+import { signOut } from "next-auth/react";
 import { AiOutlineMenu } from "react-icons/ai";
 import { useCallback, useState } from "react";
+import { useRouter } from "next/navigation";
 
 import Avatar from "../Avatar";
 import MenuItem from "./MenuItem";
-import { signOut } from "next-auth/react";
 import useRegisterLoginModal from "@/hooks/useRegisterLoginModal";
 import useRentModal from "@/hooks/useRentModal";
-import { User } from "@prisma/client";
-import { useRouter } from "next/navigation";
+import { SafeUser } from "@/types";
 
 interface UserMenuProps {
-  currentUser?: User | null;
+  currentUser?: SafeUser | null;
 }
 
 const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
@@ -78,6 +78,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
                 <MenuItem
                   onClick={() => rentModal.onOpen()}
                   label="Airbnb my home"
+                  className="block md:hidden"
                 />
 
                 <hr />

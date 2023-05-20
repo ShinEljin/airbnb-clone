@@ -39,7 +39,7 @@ const Button: React.FC<ButtonProps> = ({
       }
       ${
         small
-          ? "py-1 text-sm font-light border-[1px]"
+          ? "py-2 md:py-1 text-md md:text-sm font-light border-[1px]"
           : "py-3 text-md font-semibold border-2"
       } `}
     >
@@ -50,7 +50,7 @@ const Button: React.FC<ButtonProps> = ({
           color={iconColor && iconColor}
         />
       )}
-      {isLoading ? <Loader /> : label}
+      {disabled ? <Loader /> : label}
     </button>
   );
 };

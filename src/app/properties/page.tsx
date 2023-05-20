@@ -1,7 +1,7 @@
 import EmptyState from "@/components/EmptyState";
 import getCurrentUser from "@/utils/getCurrentUser";
-import getReservations from "@/utils/getReservations";
-import TripsClient from "./TripsClient";
+import PropertiesClient from "./PropertiesClient";
+import getListings from "@/utils/getListings";
 
 const page = async () => {
   const currentUser = await getCurrentUser();
@@ -10,9 +10,9 @@ const page = async () => {
     return <EmptyState title="Unauthorized" subtitle="Please login" />;
   }
 
-  const reservations = await getReservations({ userId: currentUser.id });
+  const listings = await getListings({ userId: currentUser.id });
 
-  if (reservations.length === 0) {
+  if (listings.length === 0) {
     return (
       <EmptyState
         title="No trips found"
@@ -21,6 +21,6 @@ const page = async () => {
     );
   }
 
-  return <TripsClient reservations={reservations} currentUser={currentUser} />;
+  return <PropertiesClient listings={listings} currentUser={currentUser} />;
 };
 export default page;

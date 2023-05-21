@@ -6,8 +6,6 @@ import EmptyState from "@/components/EmptyState";
 
 import ListingClient from "./ListingClient";
 
-export const dynamic = "force-dynamic";
-
 interface IParams {
   listingId?: string;
 }

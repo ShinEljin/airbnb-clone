@@ -1,15 +1,14 @@
 "use client";
 
-import { SafeListing } from "@/types";
+import { SafeListing, SafeUser } from "@/types";
 
 import Heading from "@/components/Heading";
 import Container from "@/components/Container";
 import ListingCard from "@/components/listings/ListingCard";
-import { User } from "@prisma/client";
 
 interface FavoritesClientProps {
   listings: SafeListing[];
-  currentUser?: User | null;
+  currentUser?: SafeUser | null;
 }
 
 const FavoritesClient: React.FC<FavoritesClientProps> = ({
@@ -25,11 +24,11 @@ const FavoritesClient: React.FC<FavoritesClientProps> = ({
           grid 
           grid-cols-1 
           sm:grid-cols-2 
-          md:grid-cols-3 
-          lg:grid-cols-4
-          xl:grid-cols-5
-          2xl:grid-cols-6
-          gap-8
+          lg:grid-cols-3
+          xl:grid-cols-4
+          2xl:grid-cols-5
+          3xl:grid-cols-6
+          gap-6
         "
       >
         {listings.map((listing: any) => (

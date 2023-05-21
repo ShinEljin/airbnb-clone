@@ -1,7 +1,6 @@
 "use client";
 
 import useCountries from "@/hooks/useCountries";
-import { User } from "@prisma/client";
 import { IconType } from "react-icons";
 import Avatar from "../Avatar";
 import ListingCategory from "./ListingCategory";

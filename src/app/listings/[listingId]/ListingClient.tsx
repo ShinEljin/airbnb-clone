@@ -7,7 +7,6 @@ import ListingReservation from "@/components/listings/ListingReservation";
 import { categories } from "@/components/navbar/Categories";
 import useRegisterLoginModal from "@/hooks/useRegisterLoginModal";
 import { SafeListing, SafeReservation, SafeUser } from "@/types";
-import { User } from "@prisma/client";
 import axios from "axios";
 import { differenceInCalendarDays, eachDayOfInterval } from "date-fns";
 import { useRouter } from "next/navigation";
@@ -26,7 +25,7 @@ interface ListingClientProps {
   listing: SafeListing & {
     user: SafeUser;
   };
-  currentUser?: User | null;
+  currentUser?: SafeUser | null;
 }
 
 const ListingClient: React.FC<ListingClientProps> = ({

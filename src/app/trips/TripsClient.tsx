@@ -5,16 +5,15 @@ import axios from "axios";
 import { useCallback, useState } from "react";
 import { useRouter } from "next/navigation";
 
-import { SafeReservation } from "@/types";
+import { SafeReservation, SafeUser } from "@/types";
 
 import Heading from "@/components/Heading";
 import Container from "@/components/Container";
 import ListingCard from "@/components/listings/ListingCard";
-import { User } from "@prisma/client";
 
 interface TripsClientProps {
   reservations: SafeReservation[];
-  currentUser?: User | null;
+  currentUser?: SafeUser | null;
 }
 
 const TripsClient: React.FC<TripsClientProps> = ({
@@ -52,11 +51,11 @@ const TripsClient: React.FC<TripsClientProps> = ({
           grid 
           grid-cols-1 
           sm:grid-cols-2 
-          md:grid-cols-3 
-          lg:grid-cols-4
-          xl:grid-cols-5
-          2xl:grid-cols-6
-          gap-8
+          lg:grid-cols-3
+          xl:grid-cols-4
+          2xl:grid-cols-5
+          3xl:grid-cols-6
+          gap-6
         "
       >
         {reservations.map((reservation: any) => (

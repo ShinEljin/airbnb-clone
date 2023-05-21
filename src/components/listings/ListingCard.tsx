@@ -1,7 +1,6 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { User } from "@prisma/client";
 import { useCallback, useMemo } from "react";
 import { format } from "date-fns";
 
@@ -9,7 +8,8 @@ import useCountries from "@/hooks/useCountries";
 import Image from "next/image";
 import HeartButton from "../HeartButton";
 import Button from "../Button";
-import { SafeListing, SafeReservation } from "@/types";
+import { SafeListing, SafeReservation, SafeUser } from "@/types";
+import Avatar from "../Avatar";
 
 interface ListingCardProps {
   data: SafeListing;
@@ -18,7 +18,7 @@ interface ListingCardProps {
   disabled?: boolean;
   actionLabel?: string;
   actionId?: string;
-  currentUser?: User | null;
+  currentUser?: SafeUser | null;
 }
 
 const ListingCard: React.FC<ListingCardProps> = ({
@@ -83,16 +83,21 @@ const ListingCard: React.FC<ListingCardProps> = ({
           <div className="absolute top-3 right-3 ">
             <HeartButton listingId={data.id} currentUser={currentUser} />
           </div>
+          <div className="absolute left-2 bottom-2">
+            <Avatar src={data.user?.image} />
+          </div>
         </div>
-        <div className="font-semibold text-lg">
-          {location?.region}, {location?.label}
-        </div>
-        <div className="font-light text-neutral-500">
-          {reservationDate || data.category}
-        </div>
-        <div className="flex flex-row items-center gap-1">
-          <div className="font-semibold">$ {price}</div>
-          {!reservation && <div className="font-light">night</div>}
+        <div>
+          <div className="font-bold text-md">
+            {location?.region}, {location?.label}
+          </div>
+          <div className="font-light text-sm text-neutral-500">
+            {reservationDate || data.category}
+          </div>
+          <div className="flex flex-row items-center gap-1  text-sm">
+            <div className="font-bold">${price}</div>
+            {!reservation && <div className="font-light">night</div>}
+          </div>
         </div>
         {onAction && actionLabel && (
           <Button

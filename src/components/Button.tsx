@@ -50,7 +50,7 @@ const Button: React.FC<ButtonProps> = ({
           color={iconColor && iconColor}
         />
       )}
-      {disabled ? <Loader /> : label}
+      {disabled ? <Loader small={small} /> : label}
     </button>
   );
 };

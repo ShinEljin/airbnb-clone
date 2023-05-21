@@ -8,6 +8,10 @@ const ListingPage = async () => {
   const listings = await getFavoriteListings();
   const currentUser = await getCurrentUser();
 
+  if (!currentUser) {
+    return <EmptyState title="Unauthorized" subtitle="Please login" />;
+  }
+
   if (listings.length === 0) {
     return (
       <EmptyState

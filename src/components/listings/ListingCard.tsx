@@ -84,7 +84,14 @@ const ListingCard: React.FC<ListingCardProps> = ({
             <HeartButton listingId={data.id} currentUser={currentUser} />
           </div>
           <div className="absolute left-2 bottom-2">
-            <Avatar src={data.user?.image} />
+            <div className="h-12 w-12 md:h-10 md:w-10 lg:h-8 lg:w-8 ">
+              <Image
+                alt="Avatar"
+                className="rounded-full"
+                fill
+                src={data.user?.image || "/images/placeholder.jpg"}
+              />
+            </div>
           </div>
         </div>
         <div>

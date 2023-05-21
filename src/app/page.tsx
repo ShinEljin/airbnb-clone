@@ -5,7 +5,7 @@ import getCurrentUser from "@/utils/getCurrentUser";
 import getListings, { IListingsParams } from "@/utils/getListings";
 
 interface HomeProps {
-  searchParams: IListingsParams;
+  searchParams?: IListingsParams;
 }
 
 const Home = async ({ searchParams }: HomeProps) => {

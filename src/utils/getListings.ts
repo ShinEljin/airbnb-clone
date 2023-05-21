@@ -1,4 +1,5 @@
 import { prisma } from "@/lib/prisma";
+import { SafeUser } from "@/types";
 
 export interface IListingsParams {
   userId?: string;
@@ -9,6 +10,7 @@ export interface IListingsParams {
   endDate?: string;
   locationValue?: string;
   category?: string;
+  User?: SafeUser;
 }
 
 export default async function getListings(params: IListingsParams) {

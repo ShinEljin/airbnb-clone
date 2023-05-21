@@ -1,9 +1,8 @@
 import Container from "@/components/Container";
-import ListingCard from "@/components/listings/ListingCard";
 import EmptyState from "@/components/EmptyState";
-
-import getListings, { IListingsParams } from "@/utils/getListings";
+import ListingCard from "@/components/listings/ListingCard";
 import getCurrentUser from "@/utils/getCurrentUser";
+import getListings, { IListingsParams } from "@/utils/getListings";
 
 interface HomeProps {
   searchParams: IListingsParams;
@@ -20,23 +19,21 @@ const Home = async ({ searchParams }: HomeProps) => {
   return (
     <Container>
       <div
-        className="
-            pt-24
-            grid 
+        className="pt-24 grid 
             grid-cols-1 
             sm:grid-cols-2 
-            md:grid-cols-3 
-            lg:grid-cols-4
-            xl:grid-cols-5
-            2xl:grid-cols-6
-            gap-8
-          "
+            lg:grid-cols-3
+            xl:grid-cols-4
+            2xl:grid-cols-5
+            3xl:grid-cols-6
+            gap-6
+     "
       >
         {listings.map((listing: any) => (
           <ListingCard
-            currentUser={currentUser}
             key={listing.id}
             data={listing}
+            currentUser={currentUser}
           />
         ))}
       </div>

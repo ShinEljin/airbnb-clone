@@ -96,7 +96,7 @@ const RegisterModal = () => {
     <div>
       {userState === "" ? (
         <>
-          <Heading title="Welcome to Airbnb" />
+          <Heading title="Welcome to Bookease" />
           <Input
             id="email"
             type="email"

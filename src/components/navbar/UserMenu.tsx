@@ -40,7 +40,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
       <div className="flex items-center gap-3">
         <div
           onClick={onRent}
-          className="hidden md:block text-sm font-semibold py-3 px-4 rounded-full hover:bg-neutral-100 transition cursor-pointer"
+          className="hidden lg:block text-sm font-semibold py-3 px-4 rounded-full hover:bg-neutral-100 transition cursor-pointer"
         >
           Airbnb your home
         </div>
@@ -79,7 +79,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
                 <MenuItem
                   onClick={() => rentModal.onOpen()}
                   label="Airbnb my home"
-                  className="block md:hidden"
+                  className="block lg:hidden"
                 />
 
                 <hr />

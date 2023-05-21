@@ -31,11 +31,11 @@ const Button: React.FC<ButtonProps> = ({
       type={type}
       onClick={onClick}
       disabled={disabled}
-      className={`flex justify-center relative disabled:opacity-70 disabled:cursor-not-allowed rounded-lg hover:opacity-80 transition w-full 
+      className={`flex justify-center relative disabled:bg-main-200 disabled:cursor-not-allowed rounded-lg hover:opacity-80 transition w-full 
       ${
         outline
           ? "bg-white border-black text-black"
-          : "bg-gradient-to-r from-[#E61E4E] via-[#E31C5F] to-[#D80666] text-white"
+          : "bg-gradient-to-r from-main-500 via-main-550 to-main-600 text-white"
       }
       ${
         small

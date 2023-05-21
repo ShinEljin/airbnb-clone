@@ -11,7 +11,7 @@ const Loader: React.FC<LoaderProps> = ({ small }) => {
     <div role="status">
       <svg
         aria-hidden="true"
-        className={`mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-rose-400 ${
+        className={`mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-main-400 ${
           small ? "w-6 h-6" : "w-8 h-8"
         }`}
         viewBox="0 0 100 101"

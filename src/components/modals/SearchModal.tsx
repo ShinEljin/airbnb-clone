@@ -127,7 +127,7 @@ const SearchModal = () => {
   }, [step]);
 
   let bodyContent = (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col ">
       <Heading
         title="Where do you wanna go?"
         subtitle="Find the perfect location!"
@@ -136,7 +136,7 @@ const SearchModal = () => {
         value={location}
         onChange={(value) => setLocation(value as CountrySelectValue)}
       />
-      <hr />
+      <hr className="mb-4" />
       <Map center={location?.latlng} />
     </div>
   );
@@ -158,31 +158,33 @@ const SearchModal = () => {
 
   if (step === STEPS.INFO) {
     bodyContent = (
-      <div className="flex flex-col gap-8">
+      <>
         <Heading title="More information" subtitle="Find your perfect place!" />
-        <Counter
-          onChange={(value) => setGuestCount(value)}
-          value={guestCount}
-          title="Guests"
-          subtitle="How many guests are coming?"
-        />
-        <hr />
-        <Counter
-          onChange={(value) => setRoomCount(value)}
-          value={roomCount}
-          title="Rooms"
-          subtitle="How many rooms do you need?"
-        />
-        <hr />
-        <Counter
-          onChange={(value) => {
-            setBathroomCount(value);
-          }}
-          value={bathroomCount}
-          title="Bathrooms"
-          subtitle="How many bahtrooms do you need?"
-        />
-      </div>
+        <div className=" flex flex-col gap-4 my-8">
+          <Counter
+            onChange={(value) => setGuestCount(value)}
+            value={guestCount}
+            title="Guests"
+            subtitle="How many guests are coming?"
+          />
+          <hr />
+          <Counter
+            onChange={(value) => setRoomCount(value)}
+            value={roomCount}
+            title="Rooms"
+            subtitle="How many rooms do you need?"
+          />
+          <hr />
+          <Counter
+            onChange={(value) => {
+              setBathroomCount(value);
+            }}
+            value={bathroomCount}
+            title="Bathrooms"
+            subtitle="How many bahtrooms do you need?"
+          />
+        </div>
+      </>
     );
   }
 

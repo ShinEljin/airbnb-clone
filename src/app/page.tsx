@@ -5,6 +5,7 @@ import getCurrentUser from "@/utils/getCurrentUser";
 import getListings, { IListingsParams } from "@/utils/getListings";
 
 export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 interface HomeProps {
   searchParams: IListingsParams;

@@ -2,11 +2,11 @@ import "./globals.css";
 import { Nunito } from "next/font/google";
 
 import Navbar from "@/components/navbar/Navbar";
-import RegisterLoginModal from "@/components/modals/RegisterLoginModal";
 import ToastProvider from "@/providers/ToastProvider";
 import getCurrentUser from "@/utils/getCurrentUser";
+import RegisterLoginModal from "@/components/modals/RegisterLoginModal";
 import RentModal from "@/components/modals/RentModal";
-import SearchModal from "@/components/modals/SearchModal";
+// import SearchModal from "@/components/modals/SearchModal";
 
 const font = Nunito({ subsets: ["latin"] });
 
@@ -28,7 +28,7 @@ export default async function RootLayout({
         <ToastProvider />
         <RegisterLoginModal />
         <RentModal />
-        <SearchModal />
+        {/* <SearchModal /> */}
         <Navbar currentUser={currentUser} />
         <div className="pb-20 pt-28">{children}</div>
       </body>

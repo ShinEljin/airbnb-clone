@@ -14,6 +14,7 @@ interface InputProps {
   errors: FieldErrors;
   pattern?: string;
   title?: string;
+  value?: string | null;
 }
 
 const Input: React.FC<InputProps> = ({
@@ -27,6 +28,7 @@ const Input: React.FC<InputProps> = ({
   errors,
   pattern,
   title,
+  value,
 }) => {
   return (
     <div className="w-full relative">
@@ -46,6 +48,7 @@ const Input: React.FC<InputProps> = ({
         disabled={disabled}
         pattern={pattern}
         title={title}
+        defaultValue={value!}
         {...register(id, { required })}
         placeholder=" "
         type={type}

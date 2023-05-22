@@ -87,7 +87,7 @@ const Modal: React.FC<ModalProps> = ({
             ${showModal ? "opacity-100" : "opacity-0"} `}
       >
         {/* CONTENT */}
-        <div className="h-full md:h-auto lg:h-auto  border-0 rounded-lg shadow-lg relative flex flex-col  w-full bg-white outline-none focus:outline-none">
+        <div className="h-full md:h-auto lg:h-auto  border-0 rounded-t-lg md:rounded-lg shadow-lg relative flex flex-col  w-full bg-white outline-none focus:outline-none">
           {/* HEADER */}
           <Dialog.Title className="flex items-center p-6 rounded-t justify-center relative border-b-[1px]">
             {userState === "" || !userState ? (

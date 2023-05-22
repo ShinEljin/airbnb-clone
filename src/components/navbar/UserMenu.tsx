@@ -70,10 +70,10 @@ const UserMenuHL: React.FC<UserMenuProps> = ({ currentUser }) => {
 
       <Transition
         as={Fragment}
-        enter="transition ease-out duration-100"
+        enter="transition ease-out duration-200"
         enterFrom="transform opacity-0 scale-95"
-        enterTo="transform opacity-100 scale-100"
-        leave="transition ease-in duration-75"
+        enterTo="transform opacity-100 scale-100 "
+        leave="transition ease-in duration-200"
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
@@ -83,7 +83,7 @@ const UserMenuHL: React.FC<UserMenuProps> = ({ currentUser }) => {
               <>
                 {menuItems.map((item, index) => (
                   <>
-                    <Menu.Item key={item.label}>
+                    <Menu.Item as={Fragment} key={item.label}>
                       <MenuItem
                         onClick={() => router.push(item.href)}
                         label={item.label}

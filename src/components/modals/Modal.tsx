@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import { IoMdClose } from "react-icons/io";
 import { IoChevronBackOutline } from "react-icons/io5";
 import Button from "../Button";
+import { Dialog } from "@headlessui/react";
 
 interface ModalProps {
   isOpen?: boolean;
@@ -75,18 +76,23 @@ const Modal: React.FC<ModalProps> = ({
 
   return (
     <>
-      <div className="flex justify-center items-center overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none bg-neutral-800/70">
-        <div className="relative w-full sm:w-[550px] my-6 mx-auto h-full sm:h-auto ">
+      <Dialog
+        open={isOpen}
+        as="div"
+        onClose={handleClose}
+        className="flex justify-center items-center overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none bg-neutral-800/70"
+      >
+        <Dialog.Panel className="relative w-full sm:w-[550px] my-6 mx-auto h-full sm:h-auto ">
           {/* CONTENT */}
           <div
             className={`duration-300 h-full 
             ${showModal ? "translate-y-0" : "translate-y-full"} 
-            ${showModal ? "opacity-100" : "opacity-0"}
+            ${showModal ? "op acity-100" : "opacity-0"}
             `}
           >
             <div className="h-full md:h-auto lg:h-auto  border-0 rounded-lg shadow-lg relative flex flex-col  w-full bg-white outline-none focus:outline-none">
               {/* HEADER */}
-              <div className="flex items-center p-6 rounded-t justify-center relative border-b-[1px]">
+              <Dialog.Title className="flex items-center p-6 rounded-t justify-center relative border-b-[1px]">
                 {userState === "" || !userState ? (
                   <button
                     className="p-1 border-0 hover:opacity-70 transition absolute left-9"
@@ -103,7 +109,7 @@ const Modal: React.FC<ModalProps> = ({
                   </button>
                 )}
                 <div className="text-lg font-semibold">{title}</div>
-              </div>
+              </Dialog.Title>
 
               <form onSubmit={onSubmit}>
                 {/* BODY */}
@@ -132,8 +138,8 @@ const Modal: React.FC<ModalProps> = ({
               </form>
             </div>
           </div>
-        </div>
-      </div>
+        </Dialog.Panel>
+      </Dialog>
     </>
   );
 };

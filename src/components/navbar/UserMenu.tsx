@@ -2,41 +2,57 @@
 
 import { signOut } from "next-auth/react";
 import { AiOutlineMenu } from "react-icons/ai";
-import { useCallback, useState } from "react";
+import { useCallback, useRef, useEffect, Fragment } from "react";
 import { useRouter } from "next/navigation";
+import { Menu, Transition } from "@headlessui/react";
 
 import Avatar from "../Avatar";
 import MenuItem from "./MenuItem";
 import useRegisterLoginModal from "@/hooks/useRegisterLoginModal";
 import useRentModal from "@/hooks/useRentModal";
-import { User } from "@prisma/client";
 import { SafeUser } from "@/types";
 
 interface UserMenuProps {
   currentUser?: SafeUser | null;
 }
 
-const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
+const UserMenuHL: React.FC<UserMenuProps> = ({ currentUser }) => {
   const router = useRouter();
   const registerLoginModal = useRegisterLoginModal();
   const rentModal = useRentModal();
 
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggleOpen = useCallback(() => {
-    setIsOpen((value) => !value);
-  }, []);
+  const menuItems = [
+    {
+      label: "My trips",
+      href: "/trips",
+    },
+    {
+      label: "My favorites",
+      href: "/favorites",
+    },
+    {
+      label: "Reservations",
+      href: "/reservations",
+    },
+    {
+      label: "Manage Listings",
+      href: "/properties",
+    },
+    {
+      label: "Account",
+      href: "/account",
+    },
+  ];
 
   const onRent = useCallback(() => {
     if (!currentUser) {
       return registerLoginModal.onOpen();
     }
-
     rentModal.onOpen();
   }, [currentUser, registerLoginModal, rentModal]);
 
   return (
-    <div className="relative">
+    <Menu as="div" className="relative">
       <div className="flex items-center gap-3">
         <div
           onClick={onRent}
@@ -44,62 +60,69 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
         >
           Bookease your home
         </div>
-        <div
-          onClick={toggleOpen}
-          className="p-4 md:py-1 md:px-2 border-[1px] border-neutral-200 flex items-center gap-3 rounded-full cursor-pointer hover:shadow-md transition"
-        >
+        <Menu.Button className="p-4 md:py-1 md:px-2 border-[1px] border-neutral-200 flex items-center gap-3 rounded-full cursor-pointer hover:shadow-md transition">
           <AiOutlineMenu />
           <div className="hidden md:block">
             <Avatar src={currentUser?.image} />
           </div>
-        </div>
+        </Menu.Button>
       </div>
 
-      {isOpen && (
-        <div className="absolute py-2 rounded-xl shadow-md w-[200px] bg-white overflow-hidden right-0 top-12 text-sm">
+      <Transition
+        as={Fragment}
+        enter="transition ease-out duration-100"
+        enterFrom="transform opacity-0 scale-95"
+        enterTo="transform opacity-100 scale-100"
+        leave="transition ease-in duration-75"
+        leaveFrom="transform opacity-100 scale-100"
+        leaveTo="transform opacity-0 scale-95"
+      >
+        <Menu.Items className="absolute py-2 rounded-xl shadow-md w-[200px] bg-white overflow-hidden right-0 top-12 text-sm">
           <div className="flex flex-col cursor-pointer">
             {currentUser ? (
               <>
-                <MenuItem
-                  onClick={() => router.push("/trips")}
-                  label="My trips"
-                />
-                <MenuItem
-                  onClick={() => router.push("/favorites")}
-                  label="My favorites"
-                />
-                <hr />
-                <MenuItem
-                  onClick={() => router.push("/reservations")}
-                  label="Reservations"
-                />
-                <MenuItem
-                  onClick={() => router.push("/properties")}
-                  label="Manage Listings"
-                />
-                <MenuItem
-                  onClick={() => router.push("/account")}
-                  label="Account"
-                />
-                <MenuItem
-                  onClick={() => rentModal.onOpen()}
-                  label="Bookease my home"
-                  className="block lg:hidden"
-                />
+                {menuItems.map((item, index) => (
+                  <>
+                    <Menu.Item key={item.label}>
+                      <MenuItem
+                        onClick={() => router.push(item.href)}
+                        label={item.label}
+                      />
+                    </Menu.Item>
+                    {index === 1 && <hr />}
+                  </>
+                ))}
+
+                <Menu.Item>
+                  <MenuItem
+                    onClick={() => rentModal.onOpen()}
+                    label="Bookease my home"
+                    className="block lg:hidden"
+                  />
+                </Menu.Item>
 
                 <hr />
-                <MenuItem onClick={() => signOut()} label="Logout" />
+                <Menu.Item>
+                  <MenuItem onClick={() => signOut()} label="Logout" />
+                </Menu.Item>
               </>
             ) : (
               <>
-                <MenuItem label="Sign up" onClick={registerLoginModal.onOpen} />
-                <MenuItem label="Login" onClick={registerLoginModal.onOpen} />
+                <Menu.Item>
+                  <MenuItem
+                    label="Sign up"
+                    onClick={registerLoginModal.onOpen}
+                  />
+                </Menu.Item>
+                <Menu.Item>
+                  <MenuItem label="Login" onClick={registerLoginModal.onOpen} />
+                </Menu.Item>
               </>
             )}
           </div>
-        </div>
-      )}
-    </div>
+        </Menu.Items>
+      </Transition>
+    </Menu>
   );
 };
-export default UserMenu;
+export default UserMenuHL;

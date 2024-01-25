@@ -92,6 +92,8 @@ const ListingClient: React.FC<ListingClientProps> = ({
     router,
     currentUser,
     registerLoginModal,
+    listing.title,
+    listing.userId,
   ]);
 
   useEffect(() => {
@@ -141,6 +143,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
                 dateRange={dateRange}
                 onSubmit={onCreateReservation}
                 disabled={isLoading}
+                owner={currentUser?.id === listing.userId}
                 disabledDates={disabledDates}
               />
             </div>

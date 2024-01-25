@@ -13,6 +13,7 @@ interface ListingReservationProps {
   onSubmit: () => void;
   disabled?: boolean;
   disabledDates: Date[];
+  owner?: boolean;
 }
 
 const ListingReservation: React.FC<ListingReservationProps> = ({
@@ -23,6 +24,7 @@ const ListingReservation: React.FC<ListingReservationProps> = ({
   onSubmit,
   disabled,
   disabledDates,
+  owner,
 }) => {
   return (
     <div
@@ -51,7 +53,11 @@ const ListingReservation: React.FC<ListingReservationProps> = ({
       />
       <hr />
       <div className="p-4">
-        <Button disabled={disabled} label="Reserve" onClick={onSubmit} />
+        {owner ? (
+          <Button disabled label="Owner Cannot Reserve" owner />
+        ) : (
+          <Button disabled={disabled} label="Reserve" onClick={onSubmit} />
+        )}
       </div>
       <hr />
       <div

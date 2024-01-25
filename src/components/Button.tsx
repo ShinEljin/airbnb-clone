@@ -13,6 +13,7 @@ interface ButtonProps {
   small?: boolean;
   icon?: IconType;
   iconColor?: string;
+  owner?: boolean;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -25,13 +26,14 @@ const Button: React.FC<ButtonProps> = ({
   small,
   icon: Icon,
   iconColor,
+  owner,
 }) => {
   return (
     <button
       type={type}
       onClick={onClick}
-      disabled={disabled}
-      className={`flex justify-center relative disabled:bg-main-200 disabled:cursor-not-allowed rounded-lg hover:opacity-80 transition w-full 
+      disabled={owner ? owner : disabled}
+      className={`flex justify-center relative disabled:cursor-not-allowed rounded-lg  transition w-full 
       ${
         outline
           ? "bg-white border-black text-black"
@@ -41,7 +43,9 @@ const Button: React.FC<ButtonProps> = ({
         small
           ? "py-2 md:py-1 text-md md:text-sm font-light border-[1px]"
           : "py-3 text-md font-semibold border-2"
-      } `}
+      }
+      ${disabled || owner ? "" : "hover:opacity-80"} 
+      `}
     >
       {Icon && (
         <Icon
@@ -50,7 +54,7 @@ const Button: React.FC<ButtonProps> = ({
           color={iconColor && iconColor}
         />
       )}
-      {disabled ? <Loader small={small} /> : label}
+      {disabled && !owner ? <Loader small={small} /> : label}
     </button>
   );
 };

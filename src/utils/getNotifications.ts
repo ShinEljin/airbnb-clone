@@ -2,7 +2,7 @@ import { prisma } from "@/lib/prisma";
 
 export default async function getNotifications(
   userId: string,
-  markAsRead: boolean
+  markAsRead?: boolean
 ) {
   try {
     const notifications = await prisma.notification.findMany({

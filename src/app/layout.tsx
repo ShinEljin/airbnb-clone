@@ -8,7 +8,7 @@ import RegisterLoginModal from "@/components/modals/RegisterLoginModal";
 import RentModal from "@/components/modals/RentModal";
 import SearchModal from "@/components/modals/SearchModal";
 import getNotifications from "@/utils/getNotifications";
-import { Notification } from "@/types";
+import { Notification } from "@prisma/client";
 
 const font = Nunito({ subsets: ["latin"] });
 

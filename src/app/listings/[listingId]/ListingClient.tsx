@@ -67,6 +67,15 @@ const ListingClient: React.FC<ListingClientProps> = ({
         endDate: dateRange.endDate,
         listingId: listing?.id,
       });
+
+      await axios.post("/api/notifications", {
+        userId: listing.userId,
+        title: "Someone reserved your listing!",
+        description:
+          currentUser.name + " reserved your listing named " + listing.title,
+        url: "/reservations",
+      });
+
       toast.success("Listing reserved!");
       setDateRange(initialDateRange);
 

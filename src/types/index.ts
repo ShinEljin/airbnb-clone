@@ -24,3 +24,13 @@ export type SafeUser = Omit<
   updatedAt: string;
   emailVerified: string | null;
 };
+
+export type Notification = {
+  id: string;
+  userId: string;
+  title: string;
+  description: string;
+  read: boolean;
+  url: string;
+  createdAt: string;
+};

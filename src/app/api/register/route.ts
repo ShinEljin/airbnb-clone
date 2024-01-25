@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
 import bcrypt from "bcrypt";
-
 import { prisma } from "@/lib/prisma";
 
 export async function POST(request: Request) {
@@ -12,6 +11,17 @@ export async function POST(request: Request) {
         email,
         name,
         hashedPassword,
+      },
+    });
+
+    await prisma.notification.create({
+      data: {
+        userId: user.id,
+        title: "Registration successful",
+        description:
+          "Welcome to bookease " +
+          user.name +
+          " book your home and reserve other home",
       },
     });
 

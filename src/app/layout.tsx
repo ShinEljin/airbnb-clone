@@ -7,6 +7,8 @@ import getCurrentUser from "@/utils/getCurrentUser";
 import RegisterLoginModal from "@/components/modals/RegisterLoginModal";
 import RentModal from "@/components/modals/RentModal";
 import SearchModal from "@/components/modals/SearchModal";
+import getNotifications from "@/utils/getNotifications";
+import { Notification } from "@/types";
 
 const font = Nunito({ subsets: ["latin"] });
 
@@ -20,7 +22,16 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const currentUser = await getCurrentUser();
+  const currentUser: any = await getCurrentUser();
+
+  let notifications: Notification[] = [];
+
+  if (currentUser) {
+    notifications = await getNotifications(currentUser.id);
+    notifications = notifications.filter(
+      (notification) => notification.read === false
+    );
+  }
 
   return (
     <html lang="en">
@@ -29,7 +40,10 @@ export default async function RootLayout({
         <RegisterLoginModal />
         <RentModal />
         <SearchModal />
-        <Navbar currentUser={currentUser} />
+        <Navbar
+          currentUser={currentUser}
+          notifications={notifications.length}
+        />
         <div className="pb-20 pt-28">{children}</div>
       </body>
     </html>

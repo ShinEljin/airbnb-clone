@@ -5,13 +5,14 @@ import Logo from "./Logo";
 import Search from "./Search";
 import UserMenu from "./UserMenu";
 import Categories from "./Categories";
-import { SafeUser } from "@/types";
+import { Notification, SafeUser } from "@/types";
 
 interface NavbarProps {
   currentUser?: SafeUser | null;
+  notifications?: number;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
+const Navbar: React.FC<NavbarProps> = ({ currentUser, notifications }) => {
   return (
     <div className="fixed w-full bg-white shadow-sm z-10">
       <div className="py-4 md:border-b-[1px]">
@@ -25,7 +26,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
               height={35}
             />
             <Search />
-            <UserMenu currentUser={currentUser} />
+            <UserMenu currentUser={currentUser} notifications={notifications} />
           </div>
         </Container>
       </div>

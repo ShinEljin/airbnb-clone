@@ -14,14 +14,22 @@ import { SafeUser } from "@/types";
 
 interface UserMenuProps {
   currentUser?: SafeUser | null;
+  notifications?: number;
 }
 
-const UserMenuHL: React.FC<UserMenuProps> = ({ currentUser }) => {
+const UserMenuHL: React.FC<UserMenuProps> = ({
+  currentUser,
+  notifications,
+}) => {
   const router = useRouter();
   const registerLoginModal = useRegisterLoginModal();
   const rentModal = useRentModal();
 
   const menuItems = [
+    {
+      label: "Notifications",
+      href: "/notifications",
+    },
     {
       label: "My trips",
       href: "/trips",
@@ -83,13 +91,30 @@ const UserMenuHL: React.FC<UserMenuProps> = ({ currentUser }) => {
               <>
                 {menuItems.map((item, index) => (
                   <>
-                    <Menu.Item as={Fragment} key={item.label}>
+                    {item.label === "Notifications" ? (
+                      <Menu.Item as={Fragment} key={item.label}>
+                        <MenuItem
+                          onClick={() => router.push(item.href)}
+                          label={item.label}
+                          notifications={notifications}
+                        />
+                      </Menu.Item>
+                    ) : (
+                      <Menu.Item as={Fragment} key={item.label}>
+                        <MenuItem
+                          onClick={() => router.push(item.href)}
+                          label={item.label}
+                        />
+                      </Menu.Item>
+                    )}
+                    {/* <Menu.Item as={Fragment} key={item.label}>
                       <MenuItem
                         onClick={() => router.push(item.href)}
                         label={item.label}
                       />
-                    </Menu.Item>
-                    {index === 1 && <hr />}
+                    </Menu.Item> */}
+                    {index === 0 && <hr />}
+                    {index === 2 && <hr />}
                   </>
                 ))}
 

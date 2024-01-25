@@ -1,6 +1,7 @@
 import { prisma } from "@/lib/prisma";
 
 export interface IListingsParams {
+  currentUserId?: string;
   userId?: string;
   guestCount?: number;
   roomCount?: number;
@@ -14,6 +15,7 @@ export interface IListingsParams {
 export default async function getListings(params: IListingsParams) {
   try {
     const {
+      currentUserId,
       userId,
       roomCount,
       guestCount,
@@ -72,6 +74,12 @@ export default async function getListings(params: IListingsParams) {
             ],
           },
         },
+      };
+    }
+
+    if (currentUserId) {
+      query.userId = {
+        not: currentUserId,
       };
     }
 

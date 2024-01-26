@@ -55,6 +55,14 @@ const RegisterModal = () => {
       }
     } else if (userState === "register") {
       try {
+        if (data.password !== data.confirmPassword) {
+          toast.success("passwords does not match", {
+            duration: 1500,
+          });
+          setIsLoading(false);
+          return;
+        }
+
         await axios.post("/api/register", data);
         setUserState("");
         setIsLoading(false);
@@ -123,6 +131,17 @@ const RegisterModal = () => {
             id="password"
             type="password"
             label="Password"
+            disabled={isLoading}
+            register={register}
+            errors={errors}
+            required
+            pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$@.!%&*?])[A-Za-z\d#$@!%.&*?]{8,30}$"
+            title="Must contain at least one number, special character, uppercase and lowercase letter, and at least 8 or more characters"
+          />
+          <Input
+            id="confirmPassword"
+            type="password"
+            label="Confirm Password"
             disabled={isLoading}
             register={register}
             errors={errors}

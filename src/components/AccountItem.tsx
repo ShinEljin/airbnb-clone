@@ -23,6 +23,7 @@ const AccountItem: React.FC<AccountItemProps> = ({
 }) => {
   const router = useRouter();
   const [itemOpen, setItemOpen] = useState(false);
+
   const [isLoading, setIsLoading] = useState(false);
 
   const {

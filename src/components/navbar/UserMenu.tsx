@@ -90,7 +90,7 @@ const UserMenuHL: React.FC<UserMenuProps> = ({
             {currentUser ? (
               <>
                 {menuItems.map((item, index) => (
-                  <>
+                  <div key={item.label}>
                     {item.label === "Notifications" ? (
                       <Menu.Item as={Fragment} key={item.label}>
                         <MenuItem
@@ -107,15 +107,9 @@ const UserMenuHL: React.FC<UserMenuProps> = ({
                         />
                       </Menu.Item>
                     )}
-                    {/* <Menu.Item as={Fragment} key={item.label}>
-                      <MenuItem
-                        onClick={() => router.push(item.href)}
-                        label={item.label}
-                      />
-                    </Menu.Item> */}
                     {index === 0 && <hr />}
                     {index === 2 && <hr />}
-                  </>
+                  </div>
                 ))}
 
                 <Menu.Item>

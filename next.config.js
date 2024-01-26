@@ -8,6 +8,9 @@ const nextConfig = {
       "res.cloudinary.com",
     ],
   },
+  experimental: {
+    missingSuspenseWithCSRBailout: false,
+  },
 };
 
 module.exports = nextConfig;

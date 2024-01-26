@@ -26,7 +26,7 @@ const ImageUpload: React.FC<ImpageUploadProps> = ({ onChange, value }) => {
     <CldUploadWidget
       onUpload={handleUpload}
       uploadPreset="aidktdww"
-      options={{ maxFiles: 1 }}
+      options={{ maxFiles: 1, folder: "/bookease" }}
     >
       {({ open }) => {
         return (

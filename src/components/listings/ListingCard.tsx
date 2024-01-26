@@ -9,7 +9,6 @@ import Image from "next/image";
 import HeartButton from "../HeartButton";
 import Button from "../Button";
 import { SafeListing, SafeReservation, SafeUser } from "@/types";
-import Avatar from "../Avatar";
 
 interface ListingCardProps {
   data: SafeListing;
@@ -19,6 +18,8 @@ interface ListingCardProps {
   actionLabel?: string;
   actionId?: string;
   currentUser?: SafeUser | null;
+  editButton?: boolean;
+  editAction?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 const ListingCard: React.FC<ListingCardProps> = ({
@@ -29,6 +30,8 @@ const ListingCard: React.FC<ListingCardProps> = ({
   actionLabel,
   actionId = "",
   currentUser,
+  editButton,
+  editAction,
 }) => {
   const router = useRouter();
   const { getByValue } = useCountries();
@@ -106,6 +109,15 @@ const ListingCard: React.FC<ListingCardProps> = ({
             {!reservation && <div className="font-light">night</div>}
           </div>
         </div>
+        {editButton && (
+          <Button
+            disabled={disabled}
+            small
+            outline
+            label="Edit"
+            onClick={editAction}
+          />
+        )}
         {onAction && actionLabel && (
           <Button
             disabled={disabled}

@@ -2,7 +2,7 @@
 
 import { toast } from "react-hot-toast";
 import axios from "axios";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 
 import { SafeListing, SafeUser } from "@/types";
@@ -11,6 +11,9 @@ import Heading from "@/components/Heading";
 import Container from "@/components/Container";
 import ListingCard from "@/components/listings/ListingCard";
 import SwalConfirm from "@/components/modals/SwalConfirm";
+import EditRentModal from "@/components/modals/EditRentModal";
+import useEditRentModal from "@/hooks/useEditRentModal";
+import useRegisterLoginModal from "@/hooks/useRegisterLoginModal";
 
 interface TripsClientProps {
   listings: SafeListing[];
@@ -23,6 +26,8 @@ const PropertiesClient: React.FC<TripsClientProps> = ({
 }) => {
   const router = useRouter();
   const [deletingId, setDeletingId] = useState("");
+  const registerLoginModal = useRegisterLoginModal();
+  const { onOpen, setListing, isOpen, listing } = useEditRentModal();
 
   const onCancel = useCallback(
     async (id: string) => {
@@ -47,6 +52,18 @@ const PropertiesClient: React.FC<TripsClientProps> = ({
     [router]
   );
 
+  const onEdit = useCallback(
+    async (e: React.MouseEvent<HTMLButtonElement>, listing: SafeListing) => {
+      e.stopPropagation();
+      if (!currentUser) {
+        return registerLoginModal.onOpen();
+      }
+      onOpen();
+      setListing(listing);
+    },
+    [onOpen, setListing, registerLoginModal, currentUser]
+  );
+
   return (
     <Container>
       <Heading title="Properties" subtitle="List of your properties" />
@@ -64,17 +81,24 @@ const PropertiesClient: React.FC<TripsClientProps> = ({
         "
       >
         {listings.map((listing: any) => (
-          <ListingCard
-            key={listing.id}
-            data={listing}
-            actionId={listing.id}
-            onAction={onCancel}
-            disabled={deletingId === listing.id}
-            actionLabel="Delete property"
-            currentUser={currentUser}
-          />
+          <div key={listing.id}>
+            <ListingCard
+              data={listing}
+              actionId={listing.id}
+              onAction={onCancel}
+              disabled={deletingId === listing.id}
+              actionLabel="Delete property"
+              currentUser={currentUser}
+              editButton
+              editAction={(e) => onEdit(e, listing)}
+            />
+          </div>
         ))}
       </div>
+      {/* {useMemo(() => {
+        return <EditRentModal />;
+      }, [])} */}
+      {isOpen && <EditRentModal />}
     </Container>
   );
 };

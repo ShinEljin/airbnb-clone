@@ -3,7 +3,8 @@
 import Container from "@/components/Container";
 import Heading from "@/components/Heading";
 import ListingCard from "@/components/listings/ListingCard";
-import { SafeReservation, SafeUser } from "@/types";
+import SwalConfirm from "@/components/modals/SwalConfirm";
+import { SafeListing, SafeReservation, SafeUser } from "@/types";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useCallback, useState } from "react";
@@ -22,19 +23,36 @@ const ReservationClient: React.FC<ReservationsClientProps> = ({
   const [deletingId, setDeletingId] = useState("");
 
   const onCancel = useCallback(
-    async (id: string) => {
-      try {
-        await axios.delete(`/api/reservations/${id}`);
+    async (id: string, reservation?: SafeReservation) => {
+      const isConfirmed = await SwalConfirm(
+        "Do you want to cancel this resercation?",
+        "question"
+      );
 
-        toast.success("Reservation cancelled");
-        router.refresh();
-      } catch (error: any) {
-        toast.error("Something went wrong");
+      if (isConfirmed) {
+        try {
+          await axios.delete(`/api/reservations/${id}`);
+
+          await axios.post("/api/notifications", {
+            userId: reservation?.userId,
+            title: currentUser?.name + " cancelled your reservation!",
+            description:
+              currentUser?.name +
+              " cancelled your reservation at listing " +
+              reservation?.listing.title,
+            url: "/trips",
+          });
+
+          toast.success("Reservation cancelled");
+          router.refresh();
+        } catch (error: any) {
+          toast.error("Something went wrong");
+        }
+
+        setDeletingId("");
       }
-
-      setDeletingId("");
     },
-    [router]
+    [router, currentUser]
   );
 
   return (

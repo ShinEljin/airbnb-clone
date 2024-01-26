@@ -14,7 +14,7 @@ import Avatar from "../Avatar";
 interface ListingCardProps {
   data: SafeListing;
   reservation?: SafeReservation;
-  onAction?: (id: string) => void;
+  onAction?: (id: string, reservation?: SafeReservation) => void;
   disabled?: boolean;
   actionLabel?: string;
   actionId?: string;
@@ -43,9 +43,9 @@ const ListingCard: React.FC<ListingCardProps> = ({
         return;
       }
 
-      onAction?.(actionId);
+      onAction?.(actionId, reservation);
     },
-    [onAction, actionId, disabled]
+    [onAction, actionId, disabled, data]
   );
 
   const price = useMemo(() => {

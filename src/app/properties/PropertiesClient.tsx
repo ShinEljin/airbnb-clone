@@ -10,6 +10,7 @@ import { SafeListing, SafeUser } from "@/types";
 import Heading from "@/components/Heading";
 import Container from "@/components/Container";
 import ListingCard from "@/components/listings/ListingCard";
+import SwalConfirm from "@/components/modals/SwalConfirm";
 
 interface TripsClientProps {
   listings: SafeListing[];
@@ -25,15 +26,22 @@ const PropertiesClient: React.FC<TripsClientProps> = ({
 
   const onCancel = useCallback(
     async (id: string) => {
-      setDeletingId(id);
-      try {
-        await axios.delete(`/api/listings/${id}`);
-        toast.success("Listing Deleted");
-        router.refresh();
-        setDeletingId("");
-      } catch (error: any) {
-        toast.error(error?.response?.data?.error);
-        toast.error("Something went wrong");
+      const isConfirmed = await SwalConfirm(
+        "Do you want to delete this listing?",
+        "question"
+      );
+
+      if (isConfirmed) {
+        setDeletingId(id);
+        try {
+          await axios.delete(`/api/listings/${id}`);
+          toast.success("Listing Deleted");
+          router.refresh();
+          setDeletingId("");
+        } catch (error: any) {
+          toast.error(error?.response?.data?.error);
+          toast.error("Something went wrong");
+        }
       }
     },
     [router]

@@ -56,7 +56,7 @@ const RegisterModal = () => {
     } else if (userState === "register") {
       try {
         if (data.password !== data.confirmPassword) {
-          toast.success("passwords does not match", {
+          toast.error("passwords does not match", {
             duration: 1500,
           });
           setIsLoading(false);

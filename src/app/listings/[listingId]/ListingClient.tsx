@@ -59,6 +59,11 @@ const ListingClient: React.FC<ListingClientProps> = ({
       return registerLoginModal.onOpen();
     }
 
+    if (dateRange.startDate === dateRange.endDate) {
+      toast.error("Please choose different start date and end date!");
+      return;
+    }
+
     setIsLoading(true);
     try {
       await axios.post("/api/reservations", {
@@ -70,7 +75,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
 
       await axios.post("/api/notifications", {
         userId: listing.userId,
-        title: "Someone reserved your listing!",
+        title: currentUser.name + " reserved your listing!",
         description:
           currentUser.name + " reserved your listing named " + listing.title,
         url: "/reservations",

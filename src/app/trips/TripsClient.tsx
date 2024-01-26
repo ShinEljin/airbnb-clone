@@ -5,11 +5,12 @@ import axios from "axios";
 import { useCallback, useState } from "react";
 import { useRouter } from "next/navigation";
 
-import { SafeReservation, SafeUser } from "@/types";
+import { SafeListing, SafeReservation, SafeUser } from "@/types";
 
 import Heading from "@/components/Heading";
 import Container from "@/components/Container";
 import ListingCard from "@/components/listings/ListingCard";
+import SwalConfirm from "@/components/modals/SwalConfirm";
 
 interface TripsClientProps {
   reservations: SafeReservation[];
@@ -24,19 +25,37 @@ const TripsClient: React.FC<TripsClientProps> = ({
   const [deletingId, setDeletingId] = useState("");
 
   const onCancel = useCallback(
-    async (id: string) => {
-      setDeletingId(id);
-      try {
-        await axios.delete(`/api/reservations/${id}`);
-        toast.success("Reservation cancelled");
-        router.refresh();
-        setDeletingId("");
-      } catch (error: any) {
-        toast.error(error?.response?.data?.error);
-        toast.error("Something went wrong");
+    async (id: string, reservation?: SafeReservation) => {
+      const isConfirmed = await SwalConfirm(
+        "Do you want to cancel this trip?",
+        "question"
+      );
+
+      if (isConfirmed) {
+        setDeletingId(id);
+        try {
+          await axios.delete(`/api/reservations/${id}`);
+
+          await axios.post("/api/notifications", {
+            userId: reservation?.listing.userId,
+            title: currentUser?.name + " cancelled their reservation!",
+            description:
+              currentUser?.name +
+              " cancelled their reservation at listing " +
+              reservation?.listing.title,
+            url: "/reservations",
+          });
+
+          toast.success("Reservation cancelled");
+          router.refresh();
+          setDeletingId("");
+        } catch (error: any) {
+          toast.error(error?.response?.data?.error);
+          toast.error("Something went wrong");
+        }
       }
     },
-    [router]
+    [router, currentUser]
   );
 
   return (

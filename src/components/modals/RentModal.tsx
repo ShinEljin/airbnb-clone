@@ -15,6 +15,7 @@ import Input from "../inputs/Input";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import TextArea from "../inputs/TextArea";
 
 enum STEPS {
   CATEGORY = 0,
@@ -96,7 +97,7 @@ const RentModal = () => {
     try {
       await axios.post("/api/listings", data);
       toast.success("Listing Created!");
-      router.push("/");
+      router.push("/properties");
       reset();
       setStep(STEPS.CATEGORY);
       onClose();
@@ -235,7 +236,7 @@ const RentModal = () => {
           required
         />
         <hr />
-        <Input
+        <TextArea
           id="description"
           label="Description"
           disabled={isLoading}

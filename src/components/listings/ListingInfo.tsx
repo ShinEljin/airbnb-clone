@@ -73,7 +73,7 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
       <hr />
       <div
         className="
-      text-lg font-light text-neutral-500"
+      text-lg font-light text-neutral-500 whitespace-pre-line"
       >
         {description}
       </div>

@@ -9,6 +9,7 @@ import RentModal from "@/components/modals/RentModal";
 import SearchModal from "@/components/modals/SearchModal";
 import getNotifications from "@/utils/getNotifications";
 import { Notification } from "@prisma/client";
+import { Suspense } from "react";
 
 const font = Nunito({ subsets: ["latin"] });
 
@@ -39,7 +40,9 @@ export default async function RootLayout({
         <ToastProvider />
         <RegisterLoginModal />
         <RentModal />
-        <SearchModal />
+        <Suspense>
+          <SearchModal />
+        </Suspense>
         <Navbar
           currentUser={currentUser}
           notifications={notifications.length}

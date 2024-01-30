@@ -20,6 +20,7 @@ interface ListingCardProps {
   currentUser?: SafeUser | null;
   editButton?: boolean;
   editAction?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  disabledCancelBtn?: boolean;
 }
 
 const ListingCard: React.FC<ListingCardProps> = ({
@@ -32,6 +33,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
   currentUser,
   editButton,
   editAction,
+  disabledCancelBtn,
 }) => {
   const router = useRouter();
   const { getByValue } = useCountries();
@@ -118,7 +120,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
             onClick={editAction}
           />
         )}
-        {onAction && actionLabel && (
+        {onAction && actionLabel && !disabledCancelBtn && (
           <Button
             disabled={disabled}
             small

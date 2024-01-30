@@ -58,6 +58,8 @@ const TripsClient: React.FC<TripsClientProps> = ({
     [router, currentUser]
   );
 
+  const currentDate = new Date();
+
   return (
     <Container>
       <Heading
@@ -87,6 +89,11 @@ const TripsClient: React.FC<TripsClientProps> = ({
             disabled={deletingId === reservation.id}
             actionLabel="Cancel reservation"
             currentUser={currentUser}
+            disabledCancelBtn={
+              currentDate.getTime() > new Date(reservation?.startDate).getTime()
+                ? true
+                : false
+            }
           />
         ))}
       </div>

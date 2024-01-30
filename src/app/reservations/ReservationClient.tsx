@@ -55,6 +55,8 @@ const ReservationClient: React.FC<ReservationsClientProps> = ({
     [router, currentUser]
   );
 
+  const currentDate = new Date();
+
   return (
     <Container>
       <Heading title="Reservations" subtitle="Bookings on your properties" />
@@ -76,6 +78,11 @@ const ReservationClient: React.FC<ReservationsClientProps> = ({
             disabled={deletingId === reservation.id}
             actionLabel="Cancel guest reservation"
             currentUser={currentUser}
+            disabledCancelBtn={
+              currentDate.getTime() > new Date(reservation?.startDate).getTime()
+                ? true
+                : false
+            }
           />
         ))}
       </div>

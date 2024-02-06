@@ -85,9 +85,10 @@ const ListingClient: React.FC<ListingClientProps> = ({
       setDateRange(initialDateRange);
 
       router.push("/trips");
+      router.refresh();
       setIsLoading(false);
-    } catch (error) {
-      toast.error("Something went wrong");
+    } catch (error: any) {
+      toast.error(error.message);
       setIsLoading(false);
     }
   }, [

@@ -5,7 +5,7 @@ import Logo from "./Logo";
 import Search from "./Search";
 import UserMenu from "./UserMenu";
 import Categories from "./Categories";
-import { Notification, SafeUser } from "@/types";
+import { SafeUser } from "@/types";
 import { Suspense } from "react";
 
 interface NavbarProps {

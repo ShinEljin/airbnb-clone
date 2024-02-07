@@ -62,12 +62,15 @@ const UserMenuHL: React.FC<UserMenuProps> = ({
   return (
     <Menu as="div" className="relative">
       <div className="flex items-center gap-3">
+        {/* bookease your home  */}
         <div
           onClick={onRent}
           className="hidden lg:block text-sm font-semibold py-3 px-4 rounded-full hover:bg-neutral-100 transition cursor-pointer"
         >
           Bookease your home
         </div>
+
+        {/* user button  */}
         <Menu.Button className="p-4 md:py-1 md:px-2 border-[1px] border-neutral-200 flex items-center gap-3 rounded-full cursor-pointer hover:shadow-md transition">
           <AiOutlineMenu />
           <div className="hidden md:block">
@@ -76,6 +79,7 @@ const UserMenuHL: React.FC<UserMenuProps> = ({
         </Menu.Button>
       </div>
 
+      {/* menu items  */}
       <Transition
         as={Fragment}
         enter="transition ease-out duration-200"

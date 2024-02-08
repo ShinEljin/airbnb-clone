@@ -72,7 +72,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
   const locationLength = data.location.split(", ").length;
   const location =
     locationLength > 1
-      ? data.location.split(", ")[locationLength - 2] +
+      ? data.location.split(", ")[locationLength - locationLength] +
         ", " +
         data.location.split(", ")[locationLength - 1]
       : data.location;

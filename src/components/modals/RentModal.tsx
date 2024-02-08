@@ -15,7 +15,6 @@ import axios from "axios";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import TextArea from "../inputs/TextArea";
-import LocationSearch from "../inputs/LocationSearch";
 
 enum STEPS {
   CATEGORY = 0,
@@ -71,6 +70,16 @@ const RentModal = () => {
 
     // eslint-disable-next-line
     [locationValue]
+  );
+
+  const LocationSearch = useMemo(
+    () =>
+      dynamic(() => import("../inputs/LocationSearch"), {
+        ssr: false,
+      }),
+
+    // eslint-disable-next-line
+    []
   );
 
   const setCustomValue = (id: string, value: any) => {
@@ -143,7 +152,7 @@ const RentModal = () => {
       />
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-h-[50vh] overflow-y-auto">
         {categories.map((item) => (
-          <div key={item.label} className="col-span-1">
+          <div key={item.label} className="col-span-1 ">
             <CategoryInput
               onClick={(category) => setCustomValue("category", category)}
               selected={category === item.label}

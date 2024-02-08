@@ -45,7 +45,7 @@ const LocationSearch = ({
         disabled:opacity-70
         disabled:cursor-not-allowed
         focus:border-gray-700
-        mb-2
+        mb-4
       `}
       />
       <div className="absolute top-12 left-2 z-30 bg-white ">

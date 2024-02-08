@@ -12,9 +12,7 @@ import useSearchModal from "@/hooks/useSearchModal";
 import Modal from "./Modal";
 import Calendar from "../inputs/Calendar";
 import Counter from "../inputs/Counter";
-import CountrySelect, { CountrySelectValue } from "../inputs/CountrySelect";
 import Heading from "../Heading";
-import LocationSearch from "../inputs/LocationSearch";
 
 enum STEPS {
   LOCATION = 0,
@@ -48,6 +46,16 @@ const SearchModal = () => {
 
     // eslint-disable-next-line
     [location]
+  );
+
+  const LocationSearch = useMemo(
+    () =>
+      dynamic(() => import("../inputs/LocationSearch"), {
+        ssr: false,
+      }),
+
+    // eslint-disable-next-line
+    []
   );
 
   const onBack = useCallback(() => {

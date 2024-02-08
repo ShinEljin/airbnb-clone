@@ -17,7 +17,6 @@ import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import TextArea from "../inputs/TextArea";
 import useCountries from "@/hooks/useCountries";
-import LocationSearch from "../inputs/LocationSearch";
 
 enum STEPS {
   CATEGORY = 0,
@@ -76,6 +75,16 @@ const EditRentModal = () => {
 
     // eslint-disable-next-line
     [locationValue]
+  );
+
+  const LocationSearch = useMemo(
+    () =>
+      dynamic(() => import("../inputs/LocationSearch"), {
+        ssr: false,
+      }),
+
+    // eslint-disable-next-line
+    []
   );
 
   const setCustomValue = (id: string, value: any) => {

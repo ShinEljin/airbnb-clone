@@ -2,9 +2,10 @@ import { useCallback, useState } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import axios from "axios";
+import { useRouter } from "next/navigation";
+
 import Button from "./Button";
 import Input from "./inputs/Input";
-import { useRouter } from "next/navigation";
 
 interface AccountItemProps {
   userId: string;

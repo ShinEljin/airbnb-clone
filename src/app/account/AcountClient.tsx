@@ -2,7 +2,6 @@
 
 import AccountItem from "@/components/AccountItem";
 import Container from "@/components/Container";
-
 import { SafeUser } from "@/types";
 
 interface AccountClientProps {

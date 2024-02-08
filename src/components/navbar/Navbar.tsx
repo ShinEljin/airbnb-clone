@@ -1,12 +1,13 @@
 "use client";
 
+import { Suspense } from "react";
+
+import { SafeUser } from "@/types";
 import Container from "../Container";
 import Logo from "./Logo";
 import Search from "./Search";
 import UserMenu from "./UserMenu";
 import Categories from "./Categories";
-import { SafeUser } from "@/types";
-import { Suspense } from "react";
 
 interface NavbarProps {
   currentUser?: SafeUser | null;

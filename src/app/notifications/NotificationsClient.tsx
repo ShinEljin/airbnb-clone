@@ -1,8 +1,9 @@
 "use client";
 
-import Container from "@/components/Container";
-import { Notification } from "@prisma/client";
 import Link from "next/link";
+import { Notification } from "@prisma/client";
+
+import Container from "@/components/Container";
 
 interface NotificationsClientProps {
   notifications?: Notification[];

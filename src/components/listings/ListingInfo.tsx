@@ -1,10 +1,11 @@
 "use client";
 
 import { IconType } from "react-icons";
+import dynamic from "next/dynamic";
+
+import { SafeUser } from "@/types";
 import Avatar from "../Avatar";
 import ListingCategory from "./ListingCategory";
-import dynamic from "next/dynamic";
-import { SafeUser } from "@/types";
 
 const Map = dynamic(() => import("../Map"), {
   ssr: false,

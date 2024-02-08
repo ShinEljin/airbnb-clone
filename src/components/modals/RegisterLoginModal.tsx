@@ -7,15 +7,15 @@ import { useState } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
+import useRegisterLoginModal from "@/hooks/useRegisterLoginModal";
 import Modal from "./Modal";
 import Heading from "../Heading";
 import Input from "../inputs/Input";
 import Button from "../Button";
-import useRegisterLoginModal from "@/hooks/useRegisterLoginModal";
-import { useRouter } from "next/navigation";
 
-const RegisterModal = () => {
+const RegisterModal: React.FC = () => {
   const { onClose, isOpen, setEmail, email, setUserState, userState } =
     useRegisterLoginModal();
   const router = useRouter();

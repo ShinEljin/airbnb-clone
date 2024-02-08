@@ -2,7 +2,7 @@
 
 import { RingLoader } from "react-spinners";
 
-const PageLoader = () => {
+const PageLoader: React.FC = () => {
   return (
     <div
       className="

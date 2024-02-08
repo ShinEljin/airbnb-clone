@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react";
 import { OpenStreetMapProvider } from "leaflet-geosearch";
 
-const LocationSearch = ({
-  setCustomValue,
-  setLocation,
-  setLocationValue,
-}: {
+interface LocationSearchProps {
   setCustomValue?: (id: string, value: number[] | string) => void;
   setLocation?: (location: string) => void;
   setLocationValue?: (locationValue: number[]) => void;
+}
+
+const LocationSearch: React.FC<LocationSearchProps> = ({
+  setCustomValue,
+  setLocation,
+  setLocationValue,
 }) => {
   const [search, setSearch] = useState("");
   const [searchResult, setSearchResult] = useState([]);

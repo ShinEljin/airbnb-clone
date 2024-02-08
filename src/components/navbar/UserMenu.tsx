@@ -2,15 +2,15 @@
 
 import { signOut } from "next-auth/react";
 import { AiOutlineMenu } from "react-icons/ai";
-import { useCallback, useRef, useEffect, Fragment } from "react";
+import { useCallback, Fragment } from "react";
 import { useRouter } from "next/navigation";
 import { Menu, Transition } from "@headlessui/react";
 
-import Avatar from "../Avatar";
-import MenuItem from "./MenuItem";
 import useRegisterLoginModal from "@/hooks/useRegisterLoginModal";
 import useRentModal from "@/hooks/useRentModal";
 import { SafeUser } from "@/types";
+import Avatar from "../Avatar";
+import MenuItem from "./MenuItem";
 
 interface UserMenuProps {
   currentUser?: SafeUser | null;

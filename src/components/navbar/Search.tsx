@@ -1,12 +1,13 @@
 "use client";
 
-import useSearchModal from "@/hooks/useSearchModal";
 import { differenceInDays } from "date-fns";
 import { useSearchParams } from "next/navigation";
 import { useMemo } from "react";
 import { BiSearch } from "react-icons/bi";
 
-const Search = () => {
+import useSearchModal from "@/hooks/useSearchModal";
+
+const Search: React.FC = () => {
   const { onOpen } = useSearchModal();
   const params = useSearchParams();
 

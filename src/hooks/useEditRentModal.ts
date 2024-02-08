@@ -1,6 +1,6 @@
-import { SafeListing } from "@/types";
-import { list } from "postcss";
 import { create } from "zustand";
+
+import { SafeListing } from "@/types";
 
 interface EditRentModalStore {
   isOpen: boolean;

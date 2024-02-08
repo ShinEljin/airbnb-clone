@@ -3,8 +3,9 @@
 import { useCallback, useEffect, useState } from "react";
 import { IoMdClose } from "react-icons/io";
 import { IoChevronBackOutline } from "react-icons/io5";
-import Button from "../Button";
 import { Dialog } from "@headlessui/react";
+
+import Button from "../Button";
 
 interface ModalProps {
   isOpen?: boolean;

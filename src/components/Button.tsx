@@ -1,6 +1,7 @@
 "use client";
 
 import { IconType } from "react-icons";
+
 import Loader from "./Loader";
 
 interface ButtonProps {

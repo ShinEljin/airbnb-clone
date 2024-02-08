@@ -16,10 +16,10 @@ import { FaSkiing } from "react-icons/fa";
 import { BsSnow } from "react-icons/bs";
 import { IoDiamond } from "react-icons/io5";
 import { MdOutlineVilla } from "react-icons/md";
+import { Suspense } from "react";
 
 import Container from "../Container";
 import CategoryBox from "../CategoryBox";
-import { Suspense } from "react";
 
 export const categories = [
   {
@@ -99,7 +99,7 @@ export const categories = [
   },
 ];
 
-const Categories = () => {
+const Categories: React.FC = () => {
   const params = useSearchParams();
   const category = params?.get("category");
   const pathname = usePathname();

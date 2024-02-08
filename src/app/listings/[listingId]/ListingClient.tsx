@@ -127,7 +127,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
           <ListingHead
             title={listing.title}
             imageSrc={listing.imageSrc}
-            locationValue={listing.locationValue}
+            location={listing.location}
             id={listing.id}
             currentUser={currentUser}
           />

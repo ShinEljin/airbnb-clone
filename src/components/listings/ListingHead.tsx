@@ -9,7 +9,7 @@ import { SafeUser } from "@/types";
 interface ListingHeadProps {
   title: string;
   imageSrc: string;
-  locationValue: string;
+  location: string;
   id: string;
   currentUser?: SafeUser | null;
 }
@@ -17,20 +17,13 @@ interface ListingHeadProps {
 const ListingHead: React.FC<ListingHeadProps> = ({
   title,
   imageSrc,
-  locationValue,
+  location,
   id,
   currentUser,
 }) => {
-  const { getByValue } = useCountries();
-
-  const location = getByValue(locationValue);
-
   return (
     <>
-      <Heading
-        title={title}
-        subtitle={`${location?.region}, ${location?.label}`}
-      />
+      <Heading title={title} subtitle={location} />
       <div className="w-full h-[60vh] overflow-hidden rounded-xl relative">
         <Image
           alt="Image"

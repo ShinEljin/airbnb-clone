@@ -7,7 +7,6 @@ import Heading from "../Heading";
 import { categories } from "../navbar/Categories";
 import CategoryInput from "../inputs/CategoryInput";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
-import CountrySelect from "../inputs/CountrySelect";
 import dynamic from "next/dynamic";
 import Counter from "../inputs/Counter";
 import ImageUpload from "../inputs/ImageUpload";
@@ -16,6 +15,7 @@ import axios from "axios";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import TextArea from "../inputs/TextArea";
+import LocationSearch from "../inputs/LocationSearch";
 
 enum STEPS {
   CATEGORY = 0,
@@ -43,6 +43,7 @@ const RentModal = () => {
   } = useForm<FieldValues>({
     defaultValues: {
       category: null,
+      locationValue: null,
       location: null,
       guestCount: 1,
       roomCount: 1,
@@ -55,6 +56,7 @@ const RentModal = () => {
   });
 
   const category = watch("category");
+  const locationValue = watch("locationValue");
   const location = watch("location");
   const guestCount = watch("guestCount");
   const roomCount = watch("roomCount");
@@ -68,7 +70,7 @@ const RentModal = () => {
       }),
 
     // eslint-disable-next-line
-    [location]
+    [locationValue]
   );
 
   const setCustomValue = (id: string, value: any) => {
@@ -161,11 +163,8 @@ const RentModal = () => {
           title="Where is your place location?"
           subtitle="Help guests find you!"
         />
-        <CountrySelect
-          value={location}
-          onChange={(value) => setCustomValue("location", value)}
-        />
-        <Map center={location?.latlng} />
+        <LocationSearch setCustomValue={setCustomValue} />
+        <Map center={locationValue} />
       </div>
     );
   }

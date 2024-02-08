@@ -17,6 +17,7 @@ import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import TextArea from "../inputs/TextArea";
 import useCountries from "@/hooks/useCountries";
+import LocationSearch from "../inputs/LocationSearch";
 
 enum STEPS {
   CATEGORY = 0,
@@ -33,7 +34,6 @@ const EditRentModal = () => {
 
   const [step, setStep] = useState(STEPS.CATEGORY);
   const [isLoading, setIsLoading] = useState(false);
-  const { getByValue } = useCountries();
 
   const {
     register,
@@ -46,7 +46,8 @@ const EditRentModal = () => {
     listing && {
       defaultValues: {
         category: listing.category,
-        location: getByValue(listing.locationValue),
+        location: listing.location,
+        locationValue: listing.locationValue,
         guestCount: listing.guestCount,
         roomCount: listing.roomCount,
         bathroomCount: listing.bathroomCount,
@@ -61,6 +62,7 @@ const EditRentModal = () => {
 
   const category = watch("category");
   const location = watch("location");
+  const locationValue = watch("locationValue");
   const guestCount = watch("guestCount");
   const roomCount = watch("roomCount");
   const bathroomCount = watch("bathroomCount");
@@ -73,7 +75,7 @@ const EditRentModal = () => {
       }),
 
     // eslint-disable-next-line
-    [location]
+    [locationValue]
   );
 
   const setCustomValue = (id: string, value: any) => {
@@ -167,11 +169,10 @@ const EditRentModal = () => {
           title="Where is your place location?"
           subtitle="Help guests find you!"
         />
-        <CountrySelect
-          value={location}
-          onChange={(value) => setCustomValue("location", value)}
-        />
-        <Map center={location?.latlng} />
+
+        <LocationSearch setCustomValue={setCustomValue} />
+
+        <Map center={locationValue} />
       </div>
     );
   }

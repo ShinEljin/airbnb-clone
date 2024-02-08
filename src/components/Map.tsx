@@ -29,11 +29,13 @@ const Map: React.FC<MapProps> = ({ center }) => {
   return (
     <MapContainer
       center={(center as L.LatLngExpression) || [51, -0.09]}
-      zoom={center ? 4 : 2}
+      zoom={center && center.length !== 0 ? 100 : 2}
       className="h-[35vh] rounded-lg"
     >
       <TileLayer url={url} attribution={attribution} />
-      {center && <Marker position={center as L.LatLngExpression} />}
+      {center && center.length !== 0 && (
+        <Marker position={center as L.LatLngExpression} />
+      )}
     </MapContainer>
   );
 };

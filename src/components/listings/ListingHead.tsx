@@ -1,6 +1,5 @@
 "use client";
 
-import useCountries from "@/hooks/useCountries";
 import Heading from "../Heading";
 import Image from "next/image";
 import HeartButton from "../HeartButton";

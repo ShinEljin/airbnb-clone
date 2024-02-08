@@ -17,11 +17,34 @@ import { BsSnow } from "react-icons/bs";
 import { IoDiamond } from "react-icons/io5";
 import { MdOutlineVilla } from "react-icons/md";
 import { Suspense } from "react";
+import { GiTheaterCurtains, GiFamilyHouse } from "react-icons/gi";
+import { MdBedroomParent } from "react-icons/md";
+import { HiHomeModern } from "react-icons/hi2";
 
 import Container from "../Container";
 import CategoryBox from "../CategoryBox";
 
 export const categories = [
+  {
+    label: "Amazing views",
+    icon: GiTheaterCurtains,
+    description: "This property is has city views!",
+  },
+  {
+    label: "Rooms",
+    icon: MdBedroomParent,
+    description: "This property is a room!",
+  },
+  {
+    label: "Tiny" + "homes",
+    icon: HiHomeModern,
+    description: "This property is a tiny home!",
+  },
+  {
+    label: "Mansion",
+    icon: GiFamilyHouse,
+    description: "This property is a mansion!",
+  },
   {
     label: "Beach",
     icon: TbBeach,
@@ -48,11 +71,6 @@ export const categories = [
     description: "This is property has a beautiful pool!",
   },
   {
-    label: "Islands",
-    icon: GiIsland,
-    description: "This property is on an island!",
-  },
-  {
     label: "Lake",
     icon: GiBoatFishing,
     description: "This property is near a lake!",
@@ -61,11 +79,6 @@ export const categories = [
     label: "Skiing",
     icon: FaSkiing,
     description: "This property has skiing activies!",
-  },
-  {
-    label: "Castles",
-    icon: GiCastle,
-    description: "This property is an ancient castle!",
   },
   {
     label: "Caves",
@@ -112,7 +125,7 @@ const Categories: React.FC = () => {
 
   return (
     <Container>
-      <div className=" lg:pt-4 flex items-center justify-between overflow-x-auto">
+      <div className=" lg:pt-4 flex items-center gap-3 justify-between overflow-x-auto">
         <Suspense>
           {categories.map((item) => (
             <CategoryBox

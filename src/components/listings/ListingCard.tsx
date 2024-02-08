@@ -36,9 +36,6 @@ const ListingCard: React.FC<ListingCardProps> = ({
   disabledCancelBtn,
 }) => {
   const router = useRouter();
-  const { getByValue } = useCountries();
-
-  const location = getByValue(data.locationValue);
 
   const handleCancel = useCallback(
     (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -72,6 +69,14 @@ const ListingCard: React.FC<ListingCardProps> = ({
     return `${format(start, "PP")} - ${format(end, "PP")}`;
   }, [reservation]);
 
+  const locationLength = data.location.split(", ").length;
+  const location =
+    locationLength > 1
+      ? data.location.split(", ")[locationLength - 2] +
+        ", " +
+        data.location.split(", ")[locationLength - 1]
+      : data.location;
+
   return (
     <div
       onClick={() => router.push(`/listings/${data.id}`)}
@@ -100,9 +105,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
           </div>
         </div>
         <div>
-          <div className="font-bold text-md">
-            {location?.region}, {location?.label}
-          </div>
+          <div className="font-bold text-md">{location}</div>
           <div className="font-light text-sm text-neutral-500">
             {reservationDate || data.category}
           </div>

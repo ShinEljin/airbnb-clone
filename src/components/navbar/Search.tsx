@@ -1,6 +1,5 @@
 "use client";
 
-import useCountries from "@/hooks/useCountries";
 import useSearchModal from "@/hooks/useSearchModal";
 import { differenceInDays } from "date-fns";
 import { useSearchParams } from "next/navigation";
@@ -10,20 +9,20 @@ import { BiSearch } from "react-icons/bi";
 const Search = () => {
   const { onOpen } = useSearchModal();
   const params = useSearchParams();
-  const { getByValue } = useCountries();
 
-  const locationValue = params?.get("locationValue");
+  const location = params?.get("location");
   const startDate = params?.get("startDate");
   const endDate = params?.get("endDate");
   const guestCount = params?.get("guestCount");
 
   const locationLabel = useMemo(() => {
-    if (locationValue) {
-      return getByValue(locationValue as string)?.label;
+    if (location) {
+      const len = location.split(", ").length;
+      return location.split(", ")[len - 1];
     }
 
     return "Anywhere";
-  }, [locationValue, getByValue]);
+  }, [location]);
 
   const durationLabel = useMemo(() => {
     if (startDate && endDate) {

@@ -7,7 +7,6 @@ import Heading from "../Heading";
 import { categories } from "../navbar/Categories";
 import CategoryInput from "../inputs/CategoryInput";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
-import CountrySelect from "../inputs/CountrySelect";
 import dynamic from "next/dynamic";
 import Counter from "../inputs/Counter";
 import ImageUpload from "../inputs/ImageUpload";
@@ -43,6 +42,7 @@ const RentModal = () => {
   } = useForm<FieldValues>({
     defaultValues: {
       category: null,
+      locationValue: null,
       location: null,
       guestCount: 1,
       roomCount: 1,
@@ -55,6 +55,7 @@ const RentModal = () => {
   });
 
   const category = watch("category");
+  const locationValue = watch("locationValue");
   const location = watch("location");
   const guestCount = watch("guestCount");
   const roomCount = watch("roomCount");
@@ -68,7 +69,17 @@ const RentModal = () => {
       }),
 
     // eslint-disable-next-line
-    [location]
+    [locationValue]
+  );
+
+  const LocationSearch = useMemo(
+    () =>
+      dynamic(() => import("../inputs/LocationSearch"), {
+        ssr: false,
+      }),
+
+    // eslint-disable-next-line
+    []
   );
 
   const setCustomValue = (id: string, value: any) => {
@@ -141,7 +152,7 @@ const RentModal = () => {
       />
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-h-[50vh] overflow-y-auto">
         {categories.map((item) => (
-          <div key={item.label} className="col-span-1">
+          <div key={item.label} className="col-span-1 ">
             <CategoryInput
               onClick={(category) => setCustomValue("category", category)}
               selected={category === item.label}
@@ -161,11 +172,8 @@ const RentModal = () => {
           title="Where is your place location?"
           subtitle="Help guests find you!"
         />
-        <CountrySelect
-          value={location}
-          onChange={(value) => setCustomValue("location", value)}
-        />
-        <Map center={location?.latlng} />
+        <LocationSearch setCustomValue={setCustomValue} />
+        <Map center={locationValue} />
       </div>
     );
   }

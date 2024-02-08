@@ -58,6 +58,7 @@ export async function PATCH(request: Request, { params }: { params: IParams }) {
       bathroomCount,
       guestCount,
       location,
+      locationValue,
       price,
     } = body;
 
@@ -82,7 +83,8 @@ export async function PATCH(request: Request, { params }: { params: IParams }) {
         roomCount,
         bathroomCount,
         guestCount,
-        locationValue: location.value,
+        location,
+        locationValue,
         price: parseInt(price, 10),
         userId: currentUser.id,
       },

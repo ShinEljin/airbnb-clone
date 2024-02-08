@@ -1,7 +1,7 @@
 import EmptyState from "@/components/EmptyState";
-import getCurrentUser from "@/utils/getCurrentUser";
+import getCurrentUser from "@/actions/getCurrentUser";
 import PropertiesClient from "./PropertiesClient";
-import getListings from "@/utils/getListings";
+import getListings from "@/actions/getListings";
 
 const page = async () => {
   const currentUser = await getCurrentUser();

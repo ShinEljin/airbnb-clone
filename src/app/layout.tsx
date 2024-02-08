@@ -6,11 +6,11 @@ import { Notification } from "@prisma/client";
 
 import Navbar from "@/components/navbar/Navbar";
 import ToastProvider from "@/components/ToastProvider";
-import getCurrentUser from "@/utils/getCurrentUser";
+import getCurrentUser from "@/actions/getCurrentUser";
 import RegisterLoginModal from "@/components/modals/RegisterLoginModal";
 import RentModal from "@/components/modals/RentModal";
 import SearchModal from "@/components/modals/SearchModal";
-import getNotifications from "@/utils/getNotifications";
+import getNotifications from "@/actions/getNotifications";
 
 const font = Nunito({ subsets: ["latin"] });
 

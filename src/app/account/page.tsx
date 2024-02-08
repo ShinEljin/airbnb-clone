@@ -1,5 +1,5 @@
 import EmptyState from "@/components/EmptyState";
-import getCurrentUser from "@/utils/getCurrentUser";
+import getCurrentUser from "@/actions/getCurrentUser";
 import AcountClient from "./AcountClient";
 
 const page = async () => {

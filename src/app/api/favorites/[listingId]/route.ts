@@ -1,5 +1,5 @@
 import { prisma } from "@/lib/prisma/prisma";
-import getCurrentUser from "@/utils/getCurrentUser";
+import getCurrentUser from "@/actions/getCurrentUser";
 import { NextResponse } from "next/server";
 
 interface IParams {

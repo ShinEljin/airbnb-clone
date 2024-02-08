@@ -1,8 +1,8 @@
 import { Notification } from "@prisma/client";
 
 import EmptyState from "@/components/EmptyState";
-import getCurrentUser from "@/utils/getCurrentUser";
-import getNotifications from "@/utils/getNotifications";
+import getCurrentUser from "@/actions/getCurrentUser";
+import getNotifications from "@/actions/getNotifications";
 import NotificationsClient from "./NotificationsClient";
 
 const page = async () => {

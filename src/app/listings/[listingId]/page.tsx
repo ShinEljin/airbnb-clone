@@ -1,6 +1,6 @@
-import getCurrentUser from "@/utils/getCurrentUser";
-import getListingById from "@/utils/getListingById";
-import getReservations from "@/utils/getReservations";
+import getCurrentUser from "@/actions/getCurrentUser";
+import getListingById from "@/actions/getListingById";
+import getReservations from "@/actions/getReservations";
 import EmptyState from "@/components/EmptyState";
 import ListingClient from "./ListingClient";
 

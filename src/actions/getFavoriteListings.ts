@@ -1,3 +1,5 @@
+"use server";
+
 import { prisma } from "@/lib/prisma/prisma";
 
 import getCurrentUser from "./getCurrentUser";

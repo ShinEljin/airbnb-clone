@@ -295,6 +295,7 @@ const EditRentModal: React.FC = () => {
       title="Bookease your home!"
       body={bodyContent}
       isLoading={isLoading}
+      disabled={isLoading}
     />
   );
 };

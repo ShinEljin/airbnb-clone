@@ -1,6 +1,6 @@
 # Bookease
 
-![Bookease Logo]([image link](https://raphaelenciso.com/_next/static/media/bookease_thumbnail.8efb466a.png))
+![Bookease Logo](https://raphaelenciso.com/_next/static/media/bookease_thumbnail.8efb466a.png)
 
 Bookease is a web application that offers a streamlined booking experience for vacation rentals, essentially a clone of Airbnb. Discover and book a wide range of accommodations worldwide with ease, ensuring a hassle-free and memorable stay.
 

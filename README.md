@@ -18,7 +18,7 @@ Bookease is a web application that offers a streamlined booking experience for v
 
 ## Getting Started
 
-To start booking accommodations with Bookease, simply visit our website at [bookease.raphaelenciso.com](bookease.raphaelenciso.com) and create an account. Once logged in, you can begin searching for vacation rentals and planning your next getaway with ease.
+To start booking accommodations with Bookease, simply visit our website at [bookease.raphaelenciso.com](https://bookease.raphaelenciso.com) and create an account. Once logged in, you can begin searching for vacation rentals and planning your next getaway with ease.
 
 ## Support
 
